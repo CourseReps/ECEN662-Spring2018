@@ -10,6 +10,8 @@
 * Qiang Zhang, [Vincent-Zh](https://github.com/Vincent-Zh)
 * Shaowen Zhu, [Shaowen1994](https://github.com/Shaowen1994)
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
+* Naren Venkatesh, [nrnvnktsh](https://github.com/nrnvnktsh)
+
 
 ## Teaching Team
 
