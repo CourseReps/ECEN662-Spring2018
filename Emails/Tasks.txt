@@ -1,0 +1,19 @@
+Hello (again),
+
+To help you develop better insight into Detection, Estimation and Inference, this course will feature Python programming challenges. The main site for this course is a Git repository hosted on GitHub:
+
+	https://github.com/CourseReps/ECEN662-Spring2018
+
+On this site, you will find a course description along with pedagogical objectives. Under Tasks, you will find a synopsis of the tools needed to partake in programming activities. Tasks and programming challenges will be submitted through GitHub. As such, you are required to Sign Up for GitHub.com; this is free. By now, a GitHub invitation was sent to your TAMU account. While you are at it, you may want to get the student developer pack (free for students).
+
+	https://education.github.com/pack
+
+Tasks 1, 2 & 3 should be completed by Friday, January 19. These tasks aim at transforming your personal computer into a world-class development station. Luckily, the necessary tools are either available for free, or are made accessible to you through educational licenses. You do NOT need to purchase software for the course.
+
+	https://github.com/CourseReps/ECEN662-Spring2018/tree/master/Tasks
+
+We will devote part of the lecture on Friday, January 19, to troubleshooting issues that may arise.
+
+Good Luck,
+Jean-Francois Chamberland
+
