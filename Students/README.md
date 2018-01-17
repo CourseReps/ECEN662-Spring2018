@@ -7,7 +7,7 @@
 * Anrui Liang, [539961733](https://github.com/539961733)
 * Subodh Mishra, [SubMishMar](https://github.com/SubMishMar)
 * Amrita Sundari, [amrita95](https://github.com/amrita95)
-
+* Qiang Zhang, [Vincent-Zh](https://github.com/Vincent-Zh)
 
 ## Teaching Team
 
