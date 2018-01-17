@@ -11,6 +11,7 @@
 * Shaowen Zhu, [Shaowen1994](https://github.com/Shaowen1994)
 * Mason Rumuly, [mason-rumuly](https://github.com/mason-rumuly)
 * Naren Venkatesh, [nrnvnktsh](https://github.com/nrnvnktsh)
+* Kun Yang, [kuny1240](https://github.com/kuny1240)
 
 
 ## Teaching Team
