@@ -8,6 +8,7 @@
 * Subodh Mishra, [SubMishMar](https://github.com/SubMishMar)
 * Amrita Sundari, [amrita95](https://github.com/amrita95)
 * Qiang Zhang, [Vincent-Zh](https://github.com/Vincent-Zh)
+* Shaowen Zhu, [Shaowen1994](https://github.com/Shaowen1994)
 
 ## Teaching Team
 
