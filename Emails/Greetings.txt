@@ -1,0 +1,13 @@
+Greetings,
+
+I would like to welcome you back to campus. You are receiving this message because you are currently registered for ECEN 662-600, Estimation and Detection Theory. Lectures are scheduled to take place on Monday, Wednesday, and Friday from 3:00 pm to 3:50 pm in ETB 1003. There is no required book for this course. Instead, I will use notes and reading assignments to teach the course. To get the most out of the semester, you should complete the reading assignments before the corresponding lecture. Also, to help you with the discipline that this requires, you may be quizzed on the material from time to time. While purchasing a textbook for the class is optional, I strongly suggest that you download a free copy of Information Theory, Inference, and Learning Algorithms by David MacKay.
+
+http://www.inference.phy.cam.ac.uk/itprnn/book.html
+
+You will find below a copy of the syllabus; it is also available through the Google Drive and Howdy
+
+Best regards,
+Jean-Francois Chamberland
+
+PS: Git repository for the course: https://github.com/CourseReps/ECEN662-Spring2018
+
