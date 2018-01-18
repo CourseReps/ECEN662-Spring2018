@@ -14,6 +14,7 @@
 * Kun Yang, [kuny1240](https://github.com/kuny1240)
 * Humberto Ramos, [humbertoramoszuniga](https://github.com/humbertoramoszuniga)
 * MS Adarsh, [msadarsh](https://github.com/msadarsh)
+* Timothy Ebinger, [tomithy1235](https://github.com/tomithy1235)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
