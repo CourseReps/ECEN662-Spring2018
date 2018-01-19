@@ -20,6 +20,7 @@
 * Chenjie Luo, [chenjieLuo](https://github.com/chenjieLuo)
 * Muhammad Emad-ud-din, [em22ad](https://github.com/em22ad)
 * Aditya Lahiri, [adilahiri](https://github.com/adilahiri)
+* Reza Oftadeh, [RezaOf](https://github.com/RezaOf)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
