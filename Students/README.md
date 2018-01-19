@@ -17,6 +17,8 @@
 * Timothy Ebinger, [tomithy1235](https://github.com/tomithy1235)
 * Anas Karaki, [anaskaraki](https://github.com/anaskaraki)
 * Adil Yoosuf, [adilyoosuf](https://github.com/adilyoosuf)
+* Chenjie Luo, [chenjieLuo](https://github.com/chenjieLuo)
+
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
