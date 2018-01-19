@@ -22,6 +22,7 @@
 * Aditya Lahiri, [adilahiri](https://github.com/adilahiri)
 * Reza Oftadeh, [RezaOf](https://github.com/RezaOf)
 * Ayca Aygun, [aycaaygun](https://github.com/aycaaygun)
+* Chiranjeev Ghosh, [chiranjeevghosh](https://github.com/chiranjeevghosh)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
