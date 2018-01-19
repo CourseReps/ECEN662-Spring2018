@@ -18,6 +18,7 @@
 * Anas Karaki, [anaskaraki](https://github.com/anaskaraki)
 * Adil Yoosuf, [adilyoosuf](https://github.com/adilyoosuf)
 * Chenjie Luo, [chenjieLuo](https://github.com/chenjieLuo)
+* Chiranjeev Ghosh, [chiranjeevghosh](https://github.com/chiranjeevghosh)
 
 ## Teaching Team
 
