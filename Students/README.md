@@ -15,6 +15,7 @@
 * Humberto Ramos, [humbertoramoszuniga](https://github.com/humbertoramoszuniga)
 * MS Adarsh, [msadarsh](https://github.com/msadarsh)
 * Timothy Ebinger, [tomithy1235](https://github.com/tomithy1235)
+* Anas Karaki, [anaskaraki](https://github.com/anaskaraki)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
