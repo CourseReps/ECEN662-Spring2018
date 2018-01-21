@@ -23,6 +23,7 @@
 * Reza Oftadeh, [RezaOf](https://github.com/RezaOf)
 * Ayca Aygun, [aycaaygun](https://github.com/aycaaygun)
 * Chiranjeev Ghosh, [chiranjeevghosh](https://github.com/chiranjeevghosh)
+* Santosh Ganji, [santosh-2](https://github.com/santosh-2)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
