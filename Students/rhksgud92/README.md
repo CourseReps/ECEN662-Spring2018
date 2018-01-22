@@ -1,4 +1,4 @@
-#Identity
-Name: Kwanhyung Lee
-/GitHubID: rhksgud9209
-/NetID: rhksgud92
+# Identity
+/ Name: Kwanhyung Lee
+/ GitHubID: rhksgud9209
+/ NetID: rhksgud92
