@@ -18,6 +18,7 @@
 * Timothy Ebinger, [tomithy1235](https://github.com/tomithy1235)
 * Anas Karaki, [anaskaraki](https://github.com/anaskaraki)
 * Adil Yoosuf, [adilyoosuf](https://github.com/adilyoosuf)
+* Kwanhyung Lee, [rhksgud9209](https://github.com/rhksgud9209)
 * Chenjie Luo, [chenjieLuo](https://github.com/chenjieLuo)
 * Muhammad Emad-ud-din, [em22ad](https://github.com/em22ad)
 * Aditya Lahiri, [adilahiri](https://github.com/adilahiri)
