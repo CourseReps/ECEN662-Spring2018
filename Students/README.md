@@ -26,6 +26,7 @@
 * Ayca Aygun, [aycaaygun](https://github.com/aycaaygun)
 * Chiranjeev Ghosh, [chiranjeevghosh](https://github.com/chiranjeevghosh)
 * Santosh Ganji, [santosh-2](https://github.com/santosh-2)
+* Neagin Neasamoni Santhi, [MaryNeagin](https://github.com/MaryNeagin)
 ## Teaching Team
 
 * Jean-Francois Chamberland, [chmbrlnd](https://github.com/chmbrlnd)
