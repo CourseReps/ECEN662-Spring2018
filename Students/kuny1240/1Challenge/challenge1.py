@@ -57,13 +57,14 @@ u0,Sigma0 = estimate(TrainingData0)
 
 threshold = 1.5
 
-decision = np.zeros((int(np.size(TestData)/2),1));
+if TestData:
+    decision = np.zeros((int(np.size(TestData)/2),1));
 
-for X in TestData:
-    d = determine(X,u0,Sigma0,u1,Sigma1,threshold)
-    mask = (TestData[:,:] == X)
-    t = mask[:,1]
-    decision[mask[:,1]] = d
+    for X in TestData:
+       d = determine(X,u0,Sigma0,u1,Sigma1,threshold)
+       mask = (TestData[:,:] == X)
+       t = mask[:,1]
+       decision[mask[:,1]] = d
 
 TestData1 = np.hstack((TestData,decision))
 dftest = pd.DataFrame(TestData1,columns=['Y0', 'Y1','label'])
