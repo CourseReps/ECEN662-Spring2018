@@ -1,4 +1,4 @@
-#1Challenge
+Challenge 1
 
 For predicting the new label, my first mind is to compare the new point with the nearest point. If the nearest point is found, the new point's label can be set as the same as the nearest point's label. 
 
