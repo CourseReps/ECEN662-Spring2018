@@ -9,6 +9,7 @@ def fit_gaussian(data):
     covariance = np.cov(np.transpose(data))
 
     print("mean = [%s, %s]" %(exp[0], exp[1]))
+    print("Covariance =")
     print(covariance)
 
     # stddev = [np.sqrt(covariance[0, 0]), np.sqrt(covariance[1, 1])]
