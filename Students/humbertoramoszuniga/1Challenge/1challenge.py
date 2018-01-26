@@ -85,7 +85,7 @@ dftest = pd.DataFrame(TestData_labeled,columns = ['Y0','Y1','label'] )
 #Data visualization
 print("Total of 0 is ",count0)
 print("Total of 1 is ",count1)
-print("Zeros perc",count0/(count0+count1))
+#print("Zeros perc",count0/(count0+count1))
 
 for k in range (0,len(TestData[:,0])):
     if TestData_labeled[k,2] == 0:
@@ -94,7 +94,6 @@ for k in range (0,len(TestData[:,0])):
         plt.plot(TestData_labeled[k,0], TestData_labeled[k,1], 'o', color='b')
 plt.axis('equal')
 plt.show()
-
 
 #Write the csv
 df = pd.concat([df0, df1, dftest], join='outer', ignore_index=True)
