@@ -30,9 +30,8 @@ plt.axis('equal')
 plt.show()
 
 # Here I assume the two Training datas are supposed to follow 2-D Gaussian Distribution
-# My initial assumption is taking two columns of data as two independent observations and then the
-# joint pdf can be described as the product of two 1-D Normal Distribution
-# However, the result was far from satisfaction, so I take the above assumption
+# My initial assumption is taking two columns of data as two independent observations and then the joint pdf can be described as the product of two 1-D Normal Distribution
+# However, the result is far from satisfaction, so I take this assumption
 
 
 mean1 = np.mean(TrainingData0[:,0])
@@ -64,7 +63,7 @@ print Testdata
 dftest = pd.DataFrame(Testdata,columns=['Y0', 'Y1','label'])
 
 
-df = pd.concat([df0, df1, dftest], join='outer', ignore_index=True)
+df = pd.concat([df1, df0, dftest], join='outer', ignore_index=True)
 
 # Verification of result
 df3 = df.loc[df['label'] == 1.0]

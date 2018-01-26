@@ -27,24 +27,16 @@ Self Assumptions:
 2, The two distributions are all 2-dimension Gaussian distributions
 3, Use Most Likely method to estimate the mu and Sigma of the distribution
 '''
-#estimate the mean and u of the 2-dim Gaussian
+#estimate the mean and u of the 2-dim Guassian
 def  estimate(X):
-'''
-input : Random Variables Subject to 2-dimension Gaussian
-output : parameters for a 2-dimension Gaussian PDF
-'''
       u = [np.mean(X[:,0]),np.mean(X[:,1])]
       A =  np.dot((X[:,0:2] - u).T,(X[:,0:2] - u))
-      Sigma = A*2/np.size(X)
+      Sigma = A*3/np.size(X)
       return u,Sigma
 
 def determine(X,mu1,Sigma1,mu2,Sigma2,threshold):
-'''
-input : observation variable X, parameters for two Gaussian distributions mus and Sigmas, threshold for determination
-output : decided output d
-'''
-    f1 = 1/(2 * np.pi * np.linalg.det(Sigma1)) * np.exp(-1/2  * np.dot(np.dot((X-mu1).T, np.power(Sigma1,-1)),(X - mu1)))
-    f2 = 1 / (2 * np.pi * np.linalg.det(Sigma2)) * np.exp(-1/2 * np.dot(np.dot((X-mu2).T, np.power(Sigma2,-1)),(X - mu2)))
+    f1 = 1/(2 * np.pi * np.sqrt(np.linalg.det(Sigma1))) * np.exp(-1/2  * np.dot(np.dot((X-mu1).T, np.power(Sigma1,-1)),(X - mu1)))
+    f2 = 1 / (2 * np.pi * np.sqrt(np.linalg.det(Sigma2))) * np.exp(-1/2 * np.dot(np.dot((X-mu2).T, np.power(Sigma2,-1)),(X - mu2)))
     ratio = f2/f1;
     if ratio > threshold:
         d = 1
@@ -57,7 +49,7 @@ u0,Sigma0 = estimate(TrainingData0)
 
 threshold = 1.5
 
-if TestData:
+if TestData.size != 0:
     decision = np.zeros((int(np.size(TestData)/2),1));
 
     for X in TestData:
@@ -66,8 +58,9 @@ if TestData:
        t = mask[:,1]
        decision[mask[:,1]] = d
 
-TestData1 = np.hstack((TestData,decision))
-dftest = pd.DataFrame(TestData1,columns=['Y0', 'Y1','label'])
+    TestData1 = np.hstack((TestData,decision))
+    dftest = pd.DataFrame(TestData1,columns=['Y0', 'Y1','label'])
+
 
 
 df = pd.concat([df0, df1, dftest], join='outer', ignore_index=True)
