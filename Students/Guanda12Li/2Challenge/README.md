@@ -1,0 +1,3 @@
+# Challenge 2
+
+For this problem, I decided to do feature selection first. So I tested only those data with 8 features first using exhaustive search to see the importance of each feature using QDA. The exhaustive search shows that the more features we have, the lower apparent error we can get. However, when we using only the first six features, we can still get a pretty good result. There is only a little improvement using all eight features. As a result, I decided to delete the last two features for all data and we can have a dataset with same number of features. Then I just used QDA classifier to label our test-set data. 
