@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 from scipy.stats import multivariate_normal
 #Read the csv file
-df = pd.DataFrame.from_csv("1challenge.csv")
+df = pd.DataFrame.from_csv("2challenge.csv")
 df0 = df.loc[df['label'] == 0.0]
 df1 = df.loc[df['label'] == 1.0]
 dftest = df.loc[~((df['label'] == 0.0) | (df['label'] == 1.0))]
@@ -28,15 +28,18 @@ TestData = dftest.as_matrix(columns=['Y0', 'Y1'])
 
 #Estimate the mean and covariance for the training data.
 #First compute mean given label 0
-#Fit the training data to a 2D gaussian distribution.
 #
 ##We find mean and covariance for the data that was mapped from a 0.
-#mu_given00,std_dev_given00 = norm.fit(TrainingData0[:,0])
-#print(mu_given00,std_dev_given00)
+mu_given00,std_dev_given00 = norm.fit(TrainingData0[:,0])
+print(mu_given00,std_dev_given00)
+
 #
-#
-#mu_given01,std_dev_given01 = norm.fit(TrainingData0[:,1])
-#print(mu_given01,std_dev_given01)
+mu_given01,std_dev_given01 = norm.fit(TrainingData0[:,6])
+print(mu_given01,std_dev_given01)
+
+mu_test = np.nanmean(TrainingData0[:,6])
+
+
 #
 ##Fit the training data to a 2D gaussian distribution.
 ##We find mean and covariance for the data that was mapped from a 1.
