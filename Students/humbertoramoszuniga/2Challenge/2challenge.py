@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 from scipy.stats import multivariate_normal
 #Read the csv file
-df = pd.DataFrame.from_csv("2challenge.csv")
+df = pd.DataFrame.from_csv("2challenge_backup.csv")
 df0 = df.loc[df['label'] == 0.0]
 df1 = df.loc[df['label'] == 1.0]
 dftest = df.loc[~((df['label'] == 0.0) | (df['label'] == 1.0))]
@@ -19,92 +19,81 @@ print(df0.shape)
 print(df1.shape)
 print(dftest.shape)
 
-
 #Convert data into numpy arrays
 TrainingData0 = df0.as_matrix(columns=None)
 TrainingData1 = df1.as_matrix(columns=None)
-TestData = dftest.as_matrix(columns=['Y0', 'Y1'])
-
+TestData = dftest.as_matrix(columns=['Y0', 'Y1','Y2','Y3','Y4','Y5','Y6','Y7'])
 
 #Estimate the mean and covariance for the training data.
 #First compute mean given label 0
 #
-##We find mean and covariance for the data that was mapped from a 0.
-mu_given00,std_dev_given00 = norm.fit(TrainingData0[:,0])
-print(mu_given00,std_dev_given00)
+##We find mean and covariance for labels 0.
+means0 = np.nanmean(TrainingData0[:,0:7],axis = 0)
+print 'The means for labels 0 are \n', means0
+stds0 = np.nanstd(TrainingData0[:,0:7],axis = 0)
+print 'The stds for labels 0 are \n ' , stds0
+m0 = np.mean(means0)
 
-#
-mu_given01,std_dev_given01 = norm.fit(TrainingData0[:,6])
-print(mu_given01,std_dev_given01)
+##We find mean and covariance for labels 1.
+means1 = np.nanmean(TrainingData1[:,0:7],axis = 0)
+print 'The means for labels 1 are \n', means1
+stds1 = np.nanstd(TrainingData1[:,0:7],axis = 0)
+print 'The stds for labels 1 are \n ' , stds1
+m1 = np.mean(means1)
 
-mu_test = np.nanmean(TrainingData0[:,6])
+#From here we can see that it is reasonable to consider the observations 
+#are assume to be Gaussian and identically distributed.
 
+#Also, the priors are taken to be equal.
+Pr0 = 0.5
+Pr1 = 0.5
+#And we can compute the threshold tau.
+tau = 0.5*(m1 + m0)
 
-#
-##Fit the training data to a 2D gaussian distribution.
-##We find mean and covariance for the data that was mapped from a 1.
-#mu_given10,std_dev_given10 = norm.fit(TrainingData1[:,0])
-#print(mu_given10,std_dev_given10)
-#
-#
-#mu_given11,std_dev_given11 = norm.fit(TrainingData1[:,1])
-#print(mu_given11,std_dev_given11)
-#
-#cov_given0 = np.cov(TrainingData0[:,0:2],rowvar = False)
-#cov_given1 = np.cov(TrainingData1[:,0:2],rowvar = False)
-
-#Given the results, it is not a bad assumption that the data is corrupted by a
-#gaussian process with zero mean and unit covariance for training0 data and
-#correlated data as given by cov_given1.
-#Also, the priors are taken to be in proportion to the known training data.
-#So,
-Pr0 = 0.6
-Pr1 = 0.4
-#And we can compute the threshold tau as
-tau = Pr0/Pr1
-
-#Now with the distributions (mean and covariances), we can compute the
-#likelihood ratio and threshold.
-#Let's compute the likelihood ratio.
-#f0 = multivariate_normal([mu_given00, mu_given01], cov_given0)
-#f1 = multivariate_normal([mu_given10, mu_given11], cov_given1)
-#
+#Then, according to the observations, we can compute the
+#likelihood ratio as
 count1 = 0.0
 count0 = 0.0
-labels = np.zeros(len(TestData[:,0]))
+#The variable Data is just a place holder for the data we want to classify.
+Data = TestData
+labels = np.zeros(len(Data[:,0]))
+#    Check how many nan are present in the row.
+#     numOfNans = np.count_nonzero(np.isnan(Data[k,:]))>0
+#     if numOfNans > 0 :
+#         num_observations = 7- numOfNans
+#Take the mean for every sequence, ignoring nans and ignoring label.
+yi = np.nanmean(Data[:,0:7], axis = 1)
+print yi
+#Classification according to threshold
+for k in range(0,yi.shape[0]):
+    if yi[k] >= tau:
+        labels[k] = 1.0
+        count1+= 1
+    else:
+        labels[k] = 0.0
+        count0+= 1
+            
+TestData_labeled = np.c_[Data,labels]
 
-#Data = TestData
-#for k in range(0,Data.shape[0]):
-##    print("k is ",k)
-#    LR = f1.pdf(Data[k,0:2])/f0.pdf(Data[k,0:2])
-##    print("LR is ",LR)
-##    LR = f1.pdf(TrainingData0[1,0:1])/f0.pdf(TrainingData0[1,0:1])
-##Classification according to threshold
-#
-#    if LR >= tau:
-#        count1+= 1
-#        labels[k] = 1.0
-##        print(1)
-#    else:
-##        print(0)
-#        count0+=1
-#TestData_labeled = np.c_[TestData,labels]
-#        
-#dftest = pd.DataFrame(TestData_labeled,columns = ['Y0','Y1','label'] )        
-        
+dftest = pd.DataFrame(TestData_labeled,columns=['Y0', 'Y1','Y2','Y3','Y4','Y5','Y6','Y7','label'] )
+
 #Data visualization
 print("Total of 0 is ",count0)
 print("Total of 1 is ",count1)
-#print("Zeros perc",count0/(count0+count1))
+print("Zeros percentage",count0/(count0+count1))
+tk = np.arange(7)
 
-#for k in range (0,len(TestData[:,0])):
-#    if TestData_labeled[k,2] == 0:
-#        plt.plot(TestData_labeled[k,0], TestData_labeled[k,1], 'x', color='r')
-#    else:
-#        plt.plot(TestData_labeled[k,0], TestData_labeled[k,1], 'o', color='b')
-#plt.axis('equal')
-#plt.show()
-#
+DataToPlot = TestData_labeled
+for k in range (0,len(Data[:,0])):
+    if DataToPlot[k,8] == 0:
+        plt.plot(tk, DataToPlot[k,0:7], 'x', color='r')
+    else:
+        plt.plot(tk, DataToPlot[k,0:7], 'o', color='b', alpha = 0.05)
+    
+plt.axis('equal')
+plt.grid()
+plt.show()
+
 ##Write the csv
-#df = pd.concat([df0, df1, dftest], join='outer', ignore_index=True)
-#df.to_csv("1challenge.csv")
+df = pd.concat([df0, df1, dftest], join='outer', ignore_index=True)
+df.to_csv("2challenge.csv")
