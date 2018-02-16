@@ -1,0 +1,113 @@
+---
+title: "2Challenge Data Imputation and Analysis using R by Reza Oftadeh"
+output: 
+  html_notebook: 
+    fig_height: 6.75
+    fig_width: 9
+    theme: paper
+---
+
+
+
+```{r message=FALSE, warning=FALSE}
+# Loading the DATA:
+rm(list = ls())
+setwd("D:/RezaFiles/TAMU/Courses/ECEN-662-600_Estimation_and_Detection_Theory/Challenges/2Challenge/Scratches")
+mydata = read.csv("2challengeSt.csv")
+df1 = mydata[which(mydata[,10]==1),2:9]
+df0 = mydata[which(mydata[,10]==0),2:9]
+L1 = data.matrix(mydata[which(mydata[,10]==1),2:9])
+rownames(L1) <- NULL
+colnames(L1) <- NULL
+L0 = as.matrix(mydata[which(mydata[,10]==0),2:9])
+rownames(L0) <- NULL
+colnames(L0) <- NULL
+```
+
+```{r message=FALSE, warning=FALSE}
+# Imputing the DATA by Multiple Imputation:
+library(mi)
+# Extra tunning stuff: show(mdf1) show(res) Rhats(res) plot(res)  mdf1 <- change(mdf1, y = c("Y0", "Y1","Y2", "Y3","Y4", "Y5","Y6", "Y7"), what = "type",to = c("con"))
+
+mdf0 = missing_data.frame(df0)
+res0 = mi(mdf0, n.iter = 30, n.chains = 4, max.minutes = 20)
+L0im = as.matrix(mi::complete(res0, m = 4)$`chain:4`[,1:8])
+rm(res0) 
+
+mdf1 = missing_data.frame(df1)
+res1 = mi(mdf1, n.iter = 30, n.chains = 4, max.minutes = 20)
+L1im = as.matrix(mi::complete(res1, m = 4)$`chain:4`[,1:8])
+rm(res1)
+```
+
+```{r message=FALSE, warning=FALSE}
+# Some plots to see the deviation from normal dist., dependence and correlations
+library(GGally)
+ggp0 = ggpairs(as.data.frame(L0im))
+ggp1 = ggpairs(as.data.frame(L1im))
+print(ggp0, progress = F) 
+print(ggp1, progress = F) 
+
+library(heplots)
+qqnorm(L0im[,1])
+cqplot(L0im[,1:8])
+qqnorm(L1im[,1])
+cqplot(L1im[,1:8])
+```
+```{r message=FALSE, warning=FALSE}
+# Save to 2challengeImputed.csv
+mydataIm = mydata
+mydataIm[1:10000,8:9]=rbind(L0im[,7:8],L1im[,7:8])
+colnames(mydataIm)[1] = "" # Just to have a perfect match
+write.csv(mydataIm, file = "2challengeImputed.csv",row.names=FALSE, na="")
+```
+
+```{r message=FALSE, warning=FALSE}
+# Delete vars, load 2challengeImputed.csv, and start working with it from now on
+rm(list = ls())
+setwd("D:/RezaFiles/TAMU/Courses/ECEN-662-600_Estimation_and_Detection_Theory/Challenges/2Challenge/Scratches")
+mydataIm = read.csv("2challengeImputed.csv")
+L1im = data.matrix(mydataIm[which(mydataIm[,10]==1),2:9])
+rownames(L1im) <- NULL
+colnames(L1im) <- NULL
+L0im = as.matrix(mydataIm[which(mydataIm[,10]==0),2:9])
+rownames(L0im) <- NULL
+colnames(L0im) <- NULL
+
+# Fitting and evaluating Beta dist.
+library(MASS)
+m_0=v_0=s1_0=s2_0=m_1=v_1=s1_1=s2_1=1
+est_0 = est_1 = list()
+for (i in 1:8){
+  # Analytical esitmation by moments for H0
+  m_0[i] = mean(L0im[,i])
+  v_0[i] = var(L0im[,i])
+  s1_0[i] = m_0[i]*(m_0[i]*(1-m_0[i])/v_0[i]-1)
+  s2_0[i] = (1-m_0[i])*(m_0[i]*(1-m_0[i])/v_0[i]-1)
+  
+  # Numerical esitmation by MLE for H0
+  est_0[[i]] = fitdistr(L0im[,i],"beta",list(shape1=1,shape2=1),lower=c(0,0))
+
+  
+  hist(L0im[,i], density=20, breaks=50, prob=TRUE,xlab="x-variable", main=paste(c("H0 & H1 Beta curves over histograms for Y",i), collapse = ''))
+  curve(dbeta(x, shape1 = s1_0[i], shape2 = s2_0[i], ncp = 0, log = FALSE),col="darkblue", lwd=2, add=TRUE )
+  curve(dbeta(x, shape1 = est_0[[i]]$estimate[[1]], shape2 = est_0[[i]]$estimate[[2]], ncp = 0, log = FALSE),col="red", lwd=2, add=TRUE, yaxt="n")
+  curve(dbeta(x, shape1 = 2.5, shape2 = 3.9, ncp = 0, log = FALSE),col="green", lwd=2, add=TRUE, yaxt="n")
+  
+  # Analytical esitmation by moments for H1
+  m_1[i] = mean(L1im[,i])
+  v_1[i] = var(L1im[,i])
+  s1_1[i] = m_1[i]*(m_1[i]*(1-m_1[i])/v_1[i]-1)
+  s2_1[i] = (1-m_1[i])*(m_1[i]*(1-m_1[i])/v_1[i]-1)
+  
+  # Numerical esitmation by MLE for H1
+  est_1[[i]] = fitdistr(L1im[,i],"beta",list(shape1=1,shape2=1),lower=c(0,0)) 
+  
+  hist(L1im[,i], density=20, breaks=50, prob=TRUE,xlab="x-variable", main=paste(c("H0 & H1 Beta curves over histograms for Y",i), collapse = ''), add=TRUE,angle=-45)
+  curve(dbeta(x, shape1 = s1_1[i], shape2 = s2_1[i], ncp = 0, log = FALSE),col="darkblue", lwd=2, add=TRUE)
+  curve(dbeta(x, shape1 = est_1[[i]]$estimate[[1]], shape2 = est_1[[i]]$estimate[[2]], ncp = 0, log = FALSE),col="red", lwd=2, add=TRUE, yaxt="n")
+  curve(dbeta(x, shape1 = 3.9, shape2 = 2.5, ncp = 0, log = FALSE),col="green", lwd=2, add=TRUE, yaxt="n")
+}
+```
+
+
