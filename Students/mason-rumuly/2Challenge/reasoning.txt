@@ -1,0 +1,51 @@
+# Pseudo-code Expansion of Zaki Bayes Classifier Algorithm (18.1)
+
+BayesClassifier(D = {(x[j],y[j]}(j=1:n)
+
+## TRAINING
+
+# get total observations
+n = length(D)
+
+# for each class c[1] through c[k]
+for i = 1:k
+	
+	# get subset of data points D[i] from that class
+	D[i] = {x[j]|y[j]=c[i], j=1:n}
+	
+	# Get the number of points from this class
+	n[i] = length(D[i])
+	
+	# Record prior probability of class as a fraction of all classes
+	P(c[i]) = n[i]/n
+	
+	# Get the means of all dimensions
+	u[i] = summation(x[j]|D[i])/n[i]
+	
+	# Create a centered data matrix by subtracting the mean from every point
+	Z[i] = D[i] - u[i]
+	
+	# Create covariance matrix
+	E[i] = (Z[i]^T)Z[i]/n[i]
+	
+## TESTING
+y_hat = argmax{f(x|u[i],E[i])*P(c[i])}
+
+
+f(x|u[i],E[i]) is the likelihood under the normality assumption
+exp(-((x-u[i])^T)*(E[i]^-1)*(x-u[i])/2) / sqrt(determinant(E[i]))
+
+
+## SPARSE DATA
+Don't use matrix multiplication to fill in
+Eliminate missing columns/rows of covariance matrix when testing sparse observations
+
+
+## ORGANIZATION
+List of CLASSES (or, Labels)
+
+Each Label has:
+	Name
+	Set of observations (data structure includes size, so number of observations)
+	Vector of Means
+	Biggest covariance matrix
