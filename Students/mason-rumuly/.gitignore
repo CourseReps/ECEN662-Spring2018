@@ -1,0 +1,4 @@
+# Ignore Pycharm Folders
+*.idea/*
+*__pycache__/*
+*venv/*
