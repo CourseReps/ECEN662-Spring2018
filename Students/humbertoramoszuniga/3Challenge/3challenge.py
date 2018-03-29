@@ -15,7 +15,7 @@ def estimate_theta(Data):
     estimate = np.sum(Data, axis=1)/(N*Data.shape[1])
     return estimate
 #Read the csv file
-df = pd.DataFrame.from_csv("3challenge-1.csv")
+df = pd.DataFrame.from_csv("3challenge_original.csv")
 dftraining = df.loc[~np.isnan(df['label'])]
 dftesting = df.loc[np.isnan(df['label'])]
 print(dftraining.shape)
@@ -56,4 +56,4 @@ plt.grid()
 #
 ###Write the csv
 df = pd.concat([dftraining, dftest], join='outer', ignore_index=True)
-df.to_csv("3challenge.csv")
+df.to_csv("3challenge-1.csv")
