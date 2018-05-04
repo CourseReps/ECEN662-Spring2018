@@ -94,10 +94,10 @@ def anderson_darling(sample, distr):
     return -len(sample) - reduce(
         add,
         map(
-            (lambda i, y: (2*i + 1)*(log(distr.cdf(y)) + log(1 - distr.cdf(y)))/len(sample)),
+            (lambda i, y: (2*i + 1)*(log(distr.cdf(y)) + log(1 - distr.cdf(y)))),
             range(len(sample)), sample
         )
-    )
+    ) / len(sample)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
