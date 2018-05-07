@@ -1,0 +1,13 @@
+autosize: true
+draw_markers: true
+draw_markers_cube: false
+draw_markers_axis: false
+
+video_rectified: true
+
+board_frame_id: "calibration"
+marker_size: .264
+publish_tf: false
+publish_pose: false
+publish_corners: true
+calculate_pose: true

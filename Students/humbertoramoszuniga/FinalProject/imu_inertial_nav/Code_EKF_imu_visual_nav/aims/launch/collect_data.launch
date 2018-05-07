@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- SETTINGS -->
+  <!-- this directory must already exist -->
+  <arg name="bag_directory" default="$(env HOME)/data/aims" />
+  <!-- what to call the bag file -->
+  <arg name="bag_name" default="aims.bag" />
+
+  <!-- TOPIC NAMES -->
+  <!-- imu topic -->
+  <arg name="imu_topic" default="/vectornav/imu" />
+  <arg name="mag_topic" default="/vectornav/mag" />
+  <!-- rangefinder topic -->
+  <arg name="range_topic" default="/mavros/px4flow/ground_distance" />
+  <!-- camera image-->
+  <arg name="image_topic" default="image_raw_throttle" />
+  <!-- motion capture topic -->
+  <arg name="mocap_topic" default="/vicon/LENS12NED/LENS_NED" />
+
+  <!-- launch vicon -->
+  <include file="$(find vicon_bridge)/launch/vicon.launch" />
+
+  <!-- launch camera -->
+  <include file="$(find lasr_ros_pointgrey)/launch/pointgrey.launch" />
+  <node name="throttle" pkg="topic_tools" type="throttle" args="
+    messages /image_raw 25" />
+
+  <!-- launch pixhawk/rangefinder -->
+  <include file="$(find avl_mav)/launch/mavros.launch" />
+
+  <!-- launch imu -->
+  <node name="vectornav" pkg="vectornav_ros" type="vn100" output="screen" />
+
+  <!-- save data to bag -->
+  <node name="recorder" pkg="rosbag" type="record" output="screen"
+      args="-o $(arg bag_directory)/$(arg bag_name)
+        $(arg mocap_topic)
+        $(arg image_topic)
+        $(arg range_topic)
+        $(arg imu_topic)
+        $(arg mag_topic)
+       " />
+</launch>

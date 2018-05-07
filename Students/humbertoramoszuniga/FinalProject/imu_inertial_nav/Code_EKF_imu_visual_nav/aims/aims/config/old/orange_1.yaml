@@ -1,0 +1,53 @@
+idb_path: "Dropbox/aims_db/orange_1.idb"
+odb_path: "Dropbox/aims_db/orange_1.odb"
+
+gravity: [0, 0, -9.79343]
+
+time_calibrate: 5
+time_start: 8.4
+time_end: 39.
+dt: 0.0001
+
+# camera parameters
+camera:
+  fx: 429.464225  # pixels
+  fy: 429.464297 # pixels
+  cx: 313.398271 # pixels
+  cy: 260.449116 # pixels
+  pixel_noise: 0.3
+  distortion: [-0.213922, 0.088003, 0.000180, -0.000312, 0.000000]
+
+# imu parameters
+imu:
+  gyro_noise: 0.001
+  gyro_walk: 0.00004
+  accel_noise: 0.015
+  accel_walk: 0.0002
+
+rangefinder:
+  range_noise: 0.004
+
+# intersensor parameters
+intersensor:
+  p_c_i: [-0.05, 0., 0.]
+  p_r_i: [0.13, -0.025 ,0.01]
+  q_ic: [0.5, 0.5,  0.5,  0.5]
+  q_ir: [0, 0, 0, 1.]
+
+# initial conditions
+x0:
+  p_i_w: [-0.07937253720589905, 1.3009278677851153, 0.11144015419217902]
+  v_i_w: [0., 0., 0.] # m/s
+  q_wi: [0.7167048223188582, 0.6972822188944819, 0.001985413255419819, 0.011303230188181025]
+
+  gyro_bias: [-0.012205, -0.000213, -0.006672] # rad/s
+  accel_bias: [0.026356, -0.014315, -0.057953] # m/s^2
+
+
+# initial 3 sigma bounds
+x0_3_sigma:
+  p_i_w: 0.0001 # m
+  v_i_w: 0.0001 # m/s
+  theta_wi: 0.005 # degrees
+  gyro_bias: 0.01 # rad/s
+  accel_bias: 0.01 # m/s^2
