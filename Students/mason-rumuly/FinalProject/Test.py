@@ -1,3 +1,9 @@
+# Mason Rumuly
+# ECEN 662-600
+# Final Project
+#
+# Run simulation
+
 from DistributionLibrary.DistributionList import DistList
 import matplotlib.pyplot as plt
 from ObjectiveFunctions import kolmogorov_smirnov, kuiper, anderson_darling, von_mises
@@ -5,7 +11,7 @@ from ObjectiveFunctions import kolmogorov_smirnov, kuiper, anderson_darling, von
 # set up constants
 dl = DistList()
 sample_sizes = [8, 10, 20, 40, 80, 100, 200, 400, 800, 1000]
-trials = 100  # number of sample sets to try per size
+trials = 1000  # number of sample sets to try
 objectives = [kolmogorov_smirnov, kuiper, anderson_darling, von_mises]
 ons = ['Kolmogorov-Smirnov Test', "Kuiper's Test", 'Anderson-Darling Test', 'Cramér–von Mises Criterion']
 
@@ -19,7 +25,8 @@ results = [[[[0 for i in range(len(sample_sizes))
 # Index meaning: origin, objective, sample size
 accuracy = [[[0 for i in range(len(sample_sizes))
               ] for j in range(len(objectives))
-             ] for k in range(len(dl))]
+             ] for k in range(len(dl))
+            ]
 
 # do empirical trials
 for r in range(len(dl)):
@@ -59,6 +66,9 @@ for r in range(len(dl)):
                             accuracy[r][o][s] += 1/trials
 
                 success = True
+
+                if t % 10 == 0:
+                    print('passed trial ' + str(t))
 
             except ValueError:
                 print('Retry Trial ' + str(t))

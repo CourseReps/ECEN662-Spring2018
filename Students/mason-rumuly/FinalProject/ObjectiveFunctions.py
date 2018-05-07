@@ -83,19 +83,26 @@ def kuiper(sample, distr):
 # not general across distributions; can't be used to compare
 def anderson_darling(sample, distr):
 
-    for y in sample:
+    samp = sample[:]
+
+    # check all defined
+    for y in samp:
         if distr.cdf(y) <= 0 or distr.cdf(y) >= 1:
-            print(distr.name(), y, distr.cdf(y), len(sample))
+            samp.remove(y)
+            # print(distr.name(), y, distr.cdf(y), len(samp))
+            # raise ValueError()
 
     # sort observations in sample
-    sample.sort()
+    samp.sort()
+    forward = samp[:]
+    samp.reverse()
 
     # calculate test statistic
-    return -len(sample) - reduce(
+    return -len(samp) - reduce(
         add,
         map(
-            (lambda i, y: (2*i + 1)*(log(distr.cdf(y)) + log(1 - distr.cdf(y)))),
-            range(len(sample)), sample
+            (lambda i, yl, yh: (2*i + 1)*(log(distr.cdf(yl)) + log(1 - distr.cdf(yh)))),
+            range(len(samp)), forward, samp
         )
     ) / len(sample)
 
