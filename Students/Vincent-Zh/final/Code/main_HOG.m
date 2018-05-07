@@ -23,7 +23,6 @@ end
 K = 100;
 Z = projectData(features, U, K);
 
-%% 
 close all;
 index_sketch = randi(siz(3));
 input_sketch=re_sketches(:,:,index_sketch);
