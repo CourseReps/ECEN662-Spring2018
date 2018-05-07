@@ -1,0 +1,53 @@
+idb_path: "Dropbox/aims_db/sim.idb"
+odb_path: "Dropbox/aims_db/sim.odb"
+
+gravity: [0, 0, -9.79343]
+
+time_calibrate: 0
+time_start: 0.
+time_end: 60.
+dt: 0.005
+
+# camera parameters
+camera:
+  fx: 432. # pixels
+  fy: 432. # pixels
+  cx: 317. # pixels
+  cy: 252. # pixels
+  pixel_noise: 0.25
+  distortion: [-0.29932978711199204, 0.09469642895565503, 8.98894755601866e-05, 0.000298086422736973, 0.0]
+
+
+# imu parameters
+imu:
+  gyro_noise: 0.001
+  gyro_walk: 0.000004
+  accel_noise: 0.015
+  accel_walk: 0.0002
+
+rangefinder:
+  range_noise: 0.001
+
+# intersensor parameters
+intersensor:
+  p_c_i: [-0.05, 0., 0.]
+  p_r_i: [0, 0.1, -0.1]
+  q_ic: [-0.70710678, 0, 0, 0.70710678]
+  q_ir: [1., 0, 0, 0]
+
+# initial conditions
+x0:
+  p_i_w: [-0.3349685 ,  1.00979664,  0.84040605] # m
+  v_i_w: [-0.00005059,  0.00520731,  0.00119113] # m/s
+  q_wi: [-0.00228385, -0.03449265,  -0.09146349, 0.99520825]
+  gyro_bias: [0.,0.,0.] # rad/s
+  accel_bias: [0.,0.,0.] # m/s^2
+
+
+# initial 3 sigma bounds
+x0_3_sigma:
+  p_i_w: 0.01 # m
+  v_i_w: 0.01 # m/s
+  theta_wi: 1 # degrees
+  gyro_bias: 0.01 # rad/s
+  accel_bias: 0.01 # m/s^2

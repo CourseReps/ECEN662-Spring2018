@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+
+
+<launch>
+  <param name="/use_sim_time" type="bool" value="true" />
+
+  <arg name="rviz_config_file"
+      default="$(find aims)/aims/viz/aims_viz.rviz"/>
+
+	<!-- launch RVIZ to visualize data -->
+  <node name="viz" pkg="rviz" type="rviz" output="screen"
+    args="-d $(arg rviz_config_file)" />
+
+</launch>
