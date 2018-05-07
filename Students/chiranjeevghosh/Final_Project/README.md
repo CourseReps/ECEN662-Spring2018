@@ -1,5 +1,7 @@
 # EKF-SLAM
-Simple Matlab Implementation of EKF SLAM
 
-Please run SLAM2D_alpha.m
+
+run SLAM2D_alpha.m
+
+The code must run in the MATLAB distribution offered by TAMU and no external libraries/Toolboxes are needed.
 
