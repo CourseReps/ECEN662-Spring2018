@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/aims" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/imu_inertial_nav" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/multiplot2d" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/quatematics" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rpmsat" vcs="Git" />
+  </component>
+</project>
