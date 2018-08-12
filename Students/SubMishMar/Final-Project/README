@@ -1,0 +1,9 @@
+# running instructions
+Please go into the EKF-SLAM/Code/ Folder and run SLAM2D_alpha.m.
+
+# dependencies
+The code must run in the MATLAB distribution offered by TAMU and no external libraries/Toolboxes are needed.
+
+
+
+
